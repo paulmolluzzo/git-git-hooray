@@ -1,5 +1,6 @@
 'use strict';
 
+const isPullRequest = () => /^\/[^/]+\/[^/]+/.test(location.pathname) && /^\/pull\/\d+/.test(location.pathname.replace(/^\/[^/]+\/[^/]+/, ''));
 const numberOfSprinkles = 100;
 const emojis = ['😊', '🎉', '🎈', '❤', '😍'];
 const sprinkles = [];
@@ -71,7 +72,12 @@ function dashSprinkles() {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+function init() {
+  if (!isPullRequest()) {
+    window.removeEventListener('resize', resizeCanvas, false);
+    return;
+  }
+
   // Find span with "First Time Contributor"
   const tagSpans = Array.prototype.slice.call(document.querySelectorAll('.timeline-comment .timeline-comment-header span.timeline-comment-label'));
   const firstTimeSpans = tagSpans.filter(span => /First/.test(span.innerText));
@@ -82,18 +88,23 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Create canvas for emoji sprinkles
-  const createdCanvas = document.createElement('canvas');
-  createdCanvas.setAttribute('id', 'git-git-hooray');
-  document.getElementsByTagName('body')[0].appendChild(createdCanvas);
-  canvas = document.querySelector('#git-git-hooray');
-  context = canvas.getContext('2d');
+  if (!document.querySelector('#git-git-hooray')) {
+    const createdCanvas = document.createElement('canvas');
+    createdCanvas.setAttribute('id', 'git-git-hooray');
+    document.getElementsByTagName('body')[0].appendChild(createdCanvas);
+    canvas = document.querySelector('#git-git-hooray');
+    context = canvas.getContext('2d');
 
-  // Fit canvas to window
-  resizeCanvas();
+    // Fit canvas to window
+    resizeCanvas();
+  }
 
   firstTimeSpans.forEach(span => {
     span.addEventListener('click', dashSprinkles, false);
   });
 
   window.addEventListener('resize', resizeCanvas, false);
-});
+}
+
+document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('pjax:success', init);
