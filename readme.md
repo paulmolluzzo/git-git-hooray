@@ -21,4 +21,4 @@ To check your local changes as you make them, [load the unpacked extension in Ch
 
 # License
 
-MIT © [Paul Molluzzo](https://paul.molluzzo.com)
+MIT © 2017 [Paul Molluzzo](https://paul.molluzzo.com)
