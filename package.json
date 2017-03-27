@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "test": "xo",
+    "release": "webstore upload --source=extension --auto-publish"
+  },
+  "devDependencies": {
+    "chrome-webstore-upload-cli": "^1.0.0",
+    "xo": "*"
+  },
+  "xo": {
+    "esnext": true,
+    "envs": [
+      "browser",
+      "jquery",
+      "webextensions"
+    ],
+    "ignores": [
+      "extension/vendor/**"
+    ],
+    "space": true
+  },
+  "ava": {
+    "files": [
+      "test/*.js"
+    ],
+    "source": [
+      "extension/*.js"
+    ]
+  }
+}

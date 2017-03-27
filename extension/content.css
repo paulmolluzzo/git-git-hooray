@@ -1,0 +1,11 @@
+#git-git-hooray {
+  position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+#git-git-hooray.show {
+  display: block;
+}
