@@ -10,12 +10,13 @@ Install it from the [Chrome Web Store](https://chrome.google.com/webstore/detail
 
 # Contributing
 
-Contributions are more than welcome!
+Contributions would be awesome!
 
-1. Fork the repo.
-2. Make a branch.
-3. Push your changes.
-4. Open a PR!
+1. Fork the repo and run `npm install`.
+2. Make a branch and write your updates.
+3. Test your changes - [load the unpacked extension in Chrome](https://developer.chrome.com/extensions/getstarted#unpacked) and run `npm run test`.
+4. Push your changes.
+5. Open a PR!
 
 To check your local changes as you make them, [load the unpacked extension in Chrome](https://developer.chrome.com/extensions/getstarted#unpacked).
 
